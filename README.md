@@ -39,7 +39,7 @@ logger.debug("I'm watching you")
 
 ```
 
-4. 启动项目后，将在项目根目录自动生成 `logs/${appName}.log` 文件，后续就可以使用 ELK 等日志系统来抓取日志文件中的内容了
+4. 启动项目后，将在项目根目录自动生成 `logs/${appName}.log` 文件
 
 _注意: Debug 级别的消息是不会写入到日志文件的，但是会在非 production 环境中在 console 中显示_
 
@@ -52,7 +52,7 @@ logs/fagougou-backend.log 长这样：
 
 ```
 
-4. 启动项目后，将在项目根目录自动生成 `logs/${appName}.log` 文件，后续就可以使用 ELK 等日志系统来抓取日志文件中的内容了
+5. (optional)后续可以使用 ELK 等日志系统来抓取日志文件中的内容作为进一步的分析
 
 
 Dependency: [Winston](https://github.com/winstonjs/winston)
