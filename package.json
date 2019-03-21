@@ -1,0 +1,34 @@
+{
+  "name": "fagougou-js-logger",
+  "version": "1.0.0",
+  "description": "A Winston wrapper for Fagougou Node projects",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fagougou/fagougou-js-logger.git"
+  },
+  "keywords": [
+    "fagougou",
+    "winston",
+    "logger",
+    "logstash",
+    "elk",
+    "filebeat",
+    "elasticsearch",
+    "log"
+  ],
+  "author": "Time",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fagougou/fagougou-js-logger/issues"
+  },
+  "homepage": "https://github.com/fagougou/fagougou-js-logger#readme",
+  "dependencies": {
+    "app-root-path": "^2.1.0",
+    "eslint-config-fagougou-base": "^1.3.0",
+    "winston": "^3.2.1"
+  }
+}

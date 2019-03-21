@@ -1,0 +1,5 @@
+{
+    "extends": ["eslint-config-fagougou-base"],
+    "rules": { }
+}
+ 
