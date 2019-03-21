@@ -46,9 +46,9 @@ _注意: Debug 级别的消息是不会写入到日志文件的，但是会在�
 logs/fagougou-backend.log 长这样：
 
 ```
-{"message": "Something wrong", "level":"error", "app":"fagougou-backend", "timestamps":"March 21st 2019, 17:35:26.859"}
-{"message": "Please attention", "level":"warn", "app":"fagougou-backend", "timestamps":"March 21st 2019, 17:35:26.859"}
-{"message": "Make some noise", "level":"info", "app":"fagougou-backend", "timestamps":"March 21st 2019, 17:35:26.859"}
+{"message": "Something wrong", "level":"error", "app":"fagougou-backend", "timestamp":"March 21st 2019, 17:35:26.859"}
+{"message": "Please attention", "level":"warn", "app":"fagougou-backend", "timestamp":"March 21st 2019, 17:35:26.859"}
+{"message": "Make some noise", "level":"info", "app":"fagougou-backend", "timestamp":"March 21st 2019, 17:35:26.859"}
 
 ```
 
