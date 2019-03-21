@@ -13,14 +13,12 @@
 const winston = require('winston')
 const yaml = require('js-yaml')
 const fs = require('fs')
-const path = require('path')
 
 /**
  * CONSTANTS
  */
 
-// const APP_ROOT = require('app-root-path')
-const APP_ROOT = path.resolve(__dirname)
+const APP_ROOT = require('app-root-path')
 const LOG_PATH = `${APP_ROOT}/logs`
 // const COMBINED_LOG_PATH = `${LOG_PATH}/combined`
 // const ERROR_LOG_PATH = `${LOG_PATH}/error`
