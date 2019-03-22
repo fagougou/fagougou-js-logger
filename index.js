@@ -20,6 +20,7 @@ const fs = require('fs')
 
 const APP_ROOT = require('app-root-path')
 const LOG_PATH = `${APP_ROOT}/logs`
+const TIMESTAMP = `${(new Date()).getFullYear()}-${('0' + ((new Date()).getMonth() + 1)).slice(-2)}-${('0' + (new Date()).getDate()).slice(-2)}`
 // const COMBINED_LOG_PATH = `${LOG_PATH}/combined`
 // const ERROR_LOG_PATH = `${LOG_PATH}/error`
 // const EXCEPTION_LOG_PATH = `${LOG_PATH}/exception`
@@ -54,7 +55,7 @@ if (!fs.existsSync(LOG_PATH)) {
 const options = {
     combined: {
         level: 'info',
-        filename: `${LOG_PATH}/${appName}.log`,
+        filename: `${LOG_PATH}/${appName}-${TIMESTAMP}.log`,
         handleExceptions: true,
         maxsize: 5242880, // 5MB
         maxFiles: 5,
