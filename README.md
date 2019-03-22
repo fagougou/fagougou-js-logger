@@ -34,7 +34,7 @@ logger.warn('Please attention')
 // Info
 logger.info('Make some noise')
 
-// Debug (debug message will not save to log file but shows in console when !production)
+// Debug (debug message will not be saved to log file but should be shown in console when we are not in production)
 logger.debug("I'm watching you")
 
 ```
