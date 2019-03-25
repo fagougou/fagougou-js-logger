@@ -13,6 +13,7 @@
 const winston = require('winston')
 const yaml = require('js-yaml')
 const fs = require('fs')
+const getDetailsFromFile = require('./util/getDetailsFromFile')
 
 /**
  * CONSTANTS
@@ -85,7 +86,7 @@ const options = {
 
 const jsonFormatter = winston.format((info) => {
     const MESSAGE = Symbol.for('message')
-    const base = { app: appName }
+    const base = { app: appName, fileDetails: getDetailsFromFile(new Error().stack) }
     const json = Object.assign(base, info)
 
     info[MESSAGE] = JSON.stringify(json)
