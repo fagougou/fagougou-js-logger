@@ -13,7 +13,6 @@
 const winston = require('winston')
 const yaml = require('js-yaml')
 const fs = require('fs')
-const getDetailsFromFile = require('./util/getDetailsFromFile')
 
 /**
  * CONSTANTS
@@ -40,13 +39,7 @@ try {
 const { appName } = config
 
 if (!fs.existsSync(LOG_PATH)) {
-    // Create log directories if does not exist
     fs.mkdirSync(LOG_PATH)
-    // const paths = [ COMBINED_LOG_PATH, ERROR_LOG_PATH, EXCEPTION_LOG_PATH ]
-
-    // paths.forEach(element => {
-    //     fs.mkdirSync(element)
-    // })
 }
 
 /**
@@ -84,13 +77,17 @@ const options = {
     // }
 }
 
-const jsonFormatter = winston.format((info) => {
-    const MESSAGE = Symbol.for('message')
-    const base = { app: appName, fileDetails: getDetailsFromFile(new Error().stack) }
-    const json = Object.assign(base, info)
+const appNameFormat = winston.format((info) => {
+    return Object.assign({ app: appName }, info)
+})
 
-    info[MESSAGE] = JSON.stringify(json)
-    info = Object.assign(info, json)
+const errorStackTracerFormat = winston.format(info => {
+    if (info && info instanceof Error) {
+        return Object.assign({}, info, {
+            message: info.message,
+            stack: info.stack
+        })
+    }
 
     return info
 })
@@ -101,7 +98,9 @@ const jsonFormatter = winston.format((info) => {
 
 const logger = winston.createLogger({
     format: winston.format.combine(
-        jsonFormatter(),
+        errorStackTracerFormat(),
+        appNameFormat(),
+        winston.format.splat(),
         winston.format.timestamp(),
         winston.format.json()
     ),
@@ -123,5 +122,7 @@ const logger = winston.createLogger({
 if (process.env.NODE_ENV !== 'production' || process.env.NODE_ENV_BETA === 'beta') {
     logger.add(new winston.transports.Console(options.debug))
 }
+
+logger.error(new Error('real wrong'))
 
 module.exports = logger
