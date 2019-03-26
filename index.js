@@ -123,6 +123,4 @@ if (process.env.NODE_ENV !== 'production' || process.env.NODE_ENV_BETA === 'beta
     logger.add(new winston.transports.Console(options.debug))
 }
 
-logger.error(new Error('real wrong'))
-
 module.exports = logger
