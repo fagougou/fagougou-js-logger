@@ -58,6 +58,7 @@ const options = {
     debug: {
         level: 'debug',
         colorize: true,
+        handleExceptions: true,
         format: winston.format.simple()
     }
     // error: {
