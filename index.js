@@ -1,6 +1,5 @@
 const winstonLogger = require('./lib/logger')
 const morgan = require('./lib/morgan')
-const appRootPath = require('app-root-path')
 const APP_ROOT = require('app-root-path')
 const yaml = require('js-yaml')
 const fs = require('fs')
@@ -37,7 +36,7 @@ function getLoggerConfig () {
  */
 function access (config = loggerConfig) {
     const { appName } = config
-    const defaultLoggerDir = `${appRootPath}/logs/${appName}-access-${TIMESTAMP}`
+    const defaultLoggerDir = `${APP_ROOT}/logs/${appName}-access-${TIMESTAMP}`
 
     return morgan('access', {
         stream: fs.createWriteStream(`${defaultLoggerDir}.log`, { flags: 'a' }),
