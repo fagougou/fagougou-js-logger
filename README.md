@@ -37,6 +37,13 @@ logger.info('Make some noise')
 // Debug (debug message will not be saved to log file but should be shown in console when we are not in production)
 logger.debug("I'm watching you")
 
+// use as express plugin
+// 1. record access logger, traceID will be written into the cookie
+app.use(logger.access())
+
+// 2. record morgan dev log
+app.use(logger.morganDev)
+
 ```
 
 4. 启动项目后，将在项目根目录自动生成 `logs/${appName}.log` 文件
