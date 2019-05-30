@@ -21,9 +21,6 @@ const fs = require('fs')
 const APP_ROOT = require('app-root-path')
 const LOG_PATH = `${APP_ROOT}/logs`
 const TIMESTAMP = `${(new Date()).getFullYear()}-${('0' + ((new Date()).getMonth() + 1)).slice(-2)}-${('0' + (new Date()).getDate()).slice(-2)}`
-// const COMBINED_LOG_PATH = `${LOG_PATH}/combined`
-// const ERROR_LOG_PATH = `${LOG_PATH}/error`
-// const EXCEPTION_LOG_PATH = `${LOG_PATH}/exception`
 
 let config = {}
 
@@ -78,8 +75,13 @@ const options = {
     // }
 }
 
-const appNameFormat = winston.format((info) => {
-    return Object.assign({ app: appName }, info)
+const customFields = winston.format((info) => {
+    const fields = {
+        app: appName,
+        env: process.env.NODE_ENV || 'undefined'
+    }
+
+    return Object.assign(fields, info)
 })
 
 const errorStackTracerFormat = winston.format(info => {
@@ -100,7 +102,7 @@ const errorStackTracerFormat = winston.format(info => {
 const logger = winston.createLogger({
     format: winston.format.combine(
         errorStackTracerFormat(),
-        appNameFormat(),
+        customFields(),
         winston.format.splat(),
         winston.format.timestamp(),
         winston.format.json()
@@ -113,7 +115,7 @@ const logger = winston.createLogger({
     // exceptionHandlers: [
     //     new winston.transports.File({ filename: `${LOG_DIR}/${appName}-exceptions.log` })
     // ],
-    // exitOnError: true // do not exit on handled exceptions
+    // exitOnError: true
 })
 
 //
