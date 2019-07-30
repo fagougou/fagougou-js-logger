@@ -94,7 +94,7 @@ const errorStackTracerFormat = winston.format(info => {
     if(info.level === 'error'){
         let id = Date.now()
         return Object.assign({}, info, {
-            message: `${info.message}  错误码：${id}`,
+            message: `${info.message}  @${id}`,
             stack: info.stack,
             traceId: id
         }) 
