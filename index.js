@@ -85,19 +85,15 @@ const customFields = winston.format((info) => {
 })
 
 const errorStackTracerFormat = winston.format(info => {
-    if (info && info instanceof Error) {
+    if(info.level === 'error'){
+        const timestamp = Date.now()
+        info.message = `${info.message}@${timestamp}`
         return Object.assign({}, info, {
             message: info.message,
-            stack: info.stack
-        })
-    }
-    if(info.level === 'error'){
-        let id = Date.now()
-        return Object.assign({}, info, {
-            message: `${info.message}  @${id}`,
             stack: info.stack,
-            traceId: id
-        }) 
+            timestamp: timestamp
+        })
+         
     }
     return info
 })
@@ -111,7 +107,6 @@ const logger = winston.createLogger({
         errorStackTracerFormat(),
         customFields(),
         winston.format.splat(),
-        winston.format.timestamp(),
         winston.format.json()
     ),
     transports: [
